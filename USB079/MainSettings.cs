@@ -4,8 +4,8 @@ namespace USB079
 {
     public class MainSettings : Plugin
     {
-        public override string getName => "USB079";
-        private SetEvents SetEvents;
+        public override string getName => nameof(USB079);
+        private SetEvents SetEvents { get; set; }
 
         public override void OnEnable()
         {
@@ -15,7 +15,6 @@ namespace USB079
             Events.PlayerSpawnEvent += SetEvents.OnPlayerSpawn;
             Events.PlayerDeathEvent += SetEvents.OnPlayerDeath;
             Events.ConsoleCommandEvent += SetEvents.OnCallCommand;
-
             Log.Info(getName + " on");
         }
 
@@ -26,7 +25,6 @@ namespace USB079
             Events.PlayerSpawnEvent -= SetEvents.OnPlayerSpawn;
             Events.PlayerDeathEvent -= SetEvents.OnPlayerDeath;
             Events.ConsoleCommandEvent -= SetEvents.OnCallCommand;
-
             Log.Info(getName + " off");
         }
 
