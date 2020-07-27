@@ -1,33 +1,33 @@
-﻿using EXILED;
+﻿using Exiled.API.Features;
 
 namespace USB079
 {
-    public class MainSettings : Plugin
+    public class MainSettings : Plugin<Config>
     {
-        public override string getName => nameof(USB079);
+        public override string Name => nameof(USB079);
         private SetEvents SetEvents { get; set; }
 
-        public override void OnEnable()
+        public override void OnEnabled()
         {
+            Global.IsFullRp = Config.IsFullRp;
+            Log.Info(nameof(Global.IsFullRp) + ": " + Global.IsFullRp);
             SetEvents = new SetEvents();
-            Events.WaitingForPlayersEvent += SetEvents.OnWaitingForPlayers;
-            Events.RoundStartEvent += SetEvents.OnRoundStart;
-            Events.PlayerSpawnEvent += SetEvents.OnPlayerSpawn;
-            Events.PlayerDeathEvent += SetEvents.OnPlayerDeath;
-            Events.ConsoleCommandEvent += SetEvents.OnCallCommand;
-            Log.Info(getName + " on");
+            Exiled.Events.Handlers.Server.WaitingForPlayers += SetEvents.OnWaitingForPlayers;
+            Exiled.Events.Handlers.Server.RoundStarted += SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Player.ChangingRole += SetEvents.OnRoleChanging;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand += SetEvents.OnSendingConsoleCommand;
+            Exiled.Events.Handlers.Player.Spawning += SetEvents.OnSpawning;
+            Log.Info(Name + " on");
         }
 
-        public override void OnDisable()
+        public override void OnDisabled()
         {
-            Events.WaitingForPlayersEvent -= SetEvents.OnWaitingForPlayers;
-            Events.RoundStartEvent -= SetEvents.OnRoundStart;
-            Events.PlayerSpawnEvent -= SetEvents.OnPlayerSpawn;
-            Events.PlayerDeathEvent -= SetEvents.OnPlayerDeath;
-            Events.ConsoleCommandEvent -= SetEvents.OnCallCommand;
-            Log.Info(getName + " off");
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= SetEvents.OnWaitingForPlayers;
+            Exiled.Events.Handlers.Server.RoundStarted -= SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Player.ChangingRole -= SetEvents.OnRoleChanging;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand -= SetEvents.OnSendingConsoleCommand;
+            Exiled.Events.Handlers.Player.Spawning -= SetEvents.OnSpawning;
+            Log.Info(Name + " off");
         }
-
-        public override void OnReload() { }
     }
 }

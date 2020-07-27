@@ -4,7 +4,7 @@ namespace USB079
 {
     public class Global
     {
-        public static bool usb079_is_fullrp;
+        public static bool IsFullRp = false;
         public static WorkStation super_computer;
         public static float download_distance = 3.0f;
         public static float load_distance = 2.0f;
@@ -16,8 +16,6 @@ namespace USB079
         public static Vector3 panel_null = new Vector3(0f, -10000f, 0f);
         public static Vector3 death_usb;
     
-        //rework study
-
         public static string _isnotclass = "Отказано. Вы не можете взаимодействовать с флешкой";
         public static string _alreadyload = "Отказано. USB флешку уже закачивают";
         public static string _usbisempty = "Отказано. Данных на закачку нет";
@@ -27,7 +25,6 @@ namespace USB079
         public static string _istoolongforflash = "Вы порыскали вокруг, но флешку не нашли";
         public static string _isdrop = "Вы бросили флешку";
         public static string _istoolongforupload = "Рядом нет супер-компьютера";
-        //auto kalitka
 
         public static Vector3 outside;
         public static Vector3 inside;

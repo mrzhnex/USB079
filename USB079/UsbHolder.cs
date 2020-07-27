@@ -2,8 +2,5 @@
 
 namespace USB079
 {
-    public class UsbHolder : MonoBehaviour
-    {
-
-    }
+    public class UsbHolder : MonoBehaviour { }
 }
